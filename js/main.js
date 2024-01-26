@@ -10,6 +10,4 @@ var removeElement = function(nums, val) {
     }
   }
   return progressIndex;
-};
-
-console.log(removeElement([3,2,2,3], 3));
+}
