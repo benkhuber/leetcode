@@ -1,27 +1,15 @@
 var removeElement = function(nums, val) {
-  let start = 0;
-  let end = nums.length;
-  let k = 0;
-  console.log(nums);
+  let progressIndex = 0;
 
-  while (start < end) {
-    console.log("start: " + start);
-    if (nums[start] === val) {
-      let placeholder = nums.shift();
-      nums.push(placeholder);
-      console.log(nums);
-      k++;
-    }
-
-    if (nums[start] != val)
+  for (let i = 0; i < nums.length; i++)
+  {
+    if (nums[i] != val)
     {
-      start++;
+      nums[progressIndex] = nums[i];
+      progressIndex++;
     }
-    console.log("end: " + end);
   }
-
-  console.log(k);
-  return nums;
+  return progressIndex;
 };
 
-console.log(removeElement([3,2,3,2,3], 3));
+console.log(removeElement([3,2,2,3], 3));
