@@ -1,30 +1,45 @@
-var isMonotonic = function(nums) {
-  let ascendingCurrent = -Infinity;
-  let descendingCurrent = Infinity;
-  let ascendingResult = false;
-  let descendingResult = false;
+var romanToInt = function(s) {
+  let sum = 0;
 
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] >= ascendingCurrent) {
-      ascendingCurrent = nums[i];
-      ascendingResult = true;
-    } else {
-      ascendingResult = false;
-      break;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] == "I" && s[i+1] == "V") {
+      sum += 4;
+      i++;
+    } else if (s[i] == "I" && s[i+1] == "X") {
+      sum += 9;
+      i++;
+    } else if (s[i] == "X" && s[i+1] == "L") {
+      sum += 40;
+      i++;
+    } else if (s[i] == "X" && s[i+1] == "C") {
+      sum += 90;
+      i++;
+    } else if (s[i] == "C" && s[i+1] == "D") {
+      sum += 400;
+      i++;
+    } else if (s[i] == "C" && s[i+1] == "M") {
+      sum += 900;
+      i++;
+    } else if (s[i] == "I") {
+      sum += 1;
+    } else if (s[i] == "V") {
+      sum += 5;
+    } else if (s[i] == "X") {
+      sum += 10;
+    } else if (s[i] == "L") {
+      sum += 50;
+    } else if (s[i] == "C") {
+      sum += 100;
+    } else if (s[i] == "D") {
+      sum += 500;
+    } else if (s[i] == "M") {
+      sum += 1000;
     }
   }
 
-  for (let i = 0; i < nums.length; i++) {
-    if (nums[i] <= descendingCurrent) {
-      descendingCurrent = nums[i];
-      descendingResult = true;
-    } else {
-      descendingResult = false;
-      break;
-    }
-  }
-
-  return ascendingResult || descendingResult;
+  return sum;
 };
 
-console.log(isMonotonic([1,2,2,3]));
+console.log(romanToInt("III"));
+console.log(romanToInt("LVIII"));
+console.log(romanToInt("MCMXCIV"));
