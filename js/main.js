@@ -1,21 +1,44 @@
-var titleToNumber = function(columnTitle) {
-  let newArr = columnTitle.split('');
-  let column = 1;
-
-  for (let i = 0; i < newArr.length; i++) {
-    // console.log(i);
-    // console.log(newArr[i]);
-    if (i == 0) {
-      column = newArr[i].charCodeAt() - 64;
-    } else if (i >= 0) {
-      column *= 26;
-      column += newArr[i].charCodeAt() - 64;
+var addBinary = function(a, b) {
+  binA = 0;
+  binB = 0;
+  sum = 0;
+  output = ""
+  
+  for (let i = 0; i < a.length; i++)
+  {
+    if (a[i] == "1")
+    {
+      binA += (2 ** (a.length - 1 - i));
     }
   }
 
-  return column;
+  for (let i = 0; i < b.length; i++)
+  {
+    if (b[i] == "1")
+    {
+      binB += (2 ** (b.length - 1 - i));
+    }
+  }
+
+  sum = binA + binB;
+
+  while (sum > 0)
+  {
+    if (sum % 2 == 1)
+    {
+      output += "1";
+    }
+    else
+    {
+      output += "0";
+    }
+    sum = Math.floor(sum / 2);
+  }
+
+  let reverseOutput = output.split('').reverse().join('');
+
+  return reverseOutput;
 };
 
-console.log(titleToNumber("A"));
-console.log(titleToNumber("AB"));
-console.log(titleToNumber("ZY"));
+console.log(addBinary("11", "1"));
+// console.log(addBinary("1010", "1011"));
